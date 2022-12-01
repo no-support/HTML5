@@ -1,16 +1,27 @@
+/* CSS는 무조건 전역이라서 값이 오염되기 쉽고, 작성 순서가 중요함 */
 /* 일단 평균화하고 일괄 reset한다. normalize 후에 reset한다. */
+/* 크로미움으로 통일되고 있는 추세라서(파이어폭스 빼고 다 크로미움 웹킷 기반) normalize.css도 잘 안 쓰는 추세 */
 @import url(./normalize.css);
 @import url(./reset.css);
+
+/* 기본 스타일 */
+*, *::before, *::after {
+  box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
+}
+
 /* 본문 스타일 */
 body {
   background: #ffc;
+  /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
+  /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   /* font-weight: 400; (기본값) */
 }
+
 /* 레이아웃(선택자 그루핑) */
+/* 태그 선택자를 많이쓰면 나중에 태그들끼리 겹치므로 가급적이면 태그 선택자가 아니라 클래스 선택자 사용할 것 */
 .header, .visual, .main, .slogan, .footer-inner {
   width: 940px;
-  box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
   margin: 0 auto; /* 이동한 게 아니다. 상자의 크기가, 투명한 margin이 커진 것이다. 0 0 0 auto를 통해 오른쪽 정렬 효과를 만들 수 있다(자식 요소가 필요한, 방향이 필요한 flex보다 단순하다.) */ 
 }
 
@@ -20,21 +31,66 @@ body {
   padding: 0 30px; /* shorthand 표기법*/
   height: 15vh;
 }
+
 /* 비주얼 */
 .visual {
   background: orange;
   height: 10vh;
 }
+
 /* 메인 */
 .main {
   background: lightgreen;
   height: 50vh;
+  /* overflow: hidden, 가상 요소 선택자는 trick임. 정석은 flow-root */
+  display: flow-root; /* 단점: 지원되는 브라우저가 적음 */
+  /* overflow: hidden; */ /* 독립적인 블록 요소가 됨. width, height를 넘어가는 자식이 있을 때의 처리 방법에 대한 속성이므로, 정신차리고 자식 요소의 크기에 대해 계산함. BFC에 대해 공부할 것 */
+  /* zoom: 1; */ /* overflow: hidden이 IE6에서 지원 안해서 IE6을 위한 수단. BFC */
+  padding: 0 15px;
 }
+/* 배경이미지, 가상 요소 선택자는 ctrl+a로 블록 잡아도 안 잡힘 */
+/* 
+main::before {
+  content: "첫 번째 자식 요소입니다.";
+}
+ */
+/*
+.main::after{
+  content: "";
+  clear: both;
+  display: block;
+}
+*/
+/* 가로 배치법 종류: 1. position 2. float 3. display: inline-block 4. display: flex 5. display: grid 다섯 가지 방법 모두 써보고 효율적인 것을 경우에 맞게 선택할 수 있도록 할 것 */
+.group {
+  float: left;
+  margin: 0 15px;
+}
+
+.group1 {
+  background-color: violet;
+  width: 250px;
+   /* 기본값 static */
+  /*
+   position: relative;
+  offset: -100px;
+  */
+}
+.group2 {
+  background-color: tomato;
+  width: 380px;
+}
+.group3 {
+  background-color: gold;
+  width: 190px;
+}
+
 /* 슬로건 */
 .slogan {
   background: skyblue;
   height: 10vh;
 }
+
 /* 푸터 */
 .footer {
   background: gray;
