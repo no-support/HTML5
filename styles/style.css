@@ -1,27 +1,45 @@
+/* 일단 평균화하고 일괄 reset한다. normalize 후에 reset한다. */
 @import url(./normalize.css);
 @import url(./reset.css);
+/* 본문 스타일 */
 body {
   background: #ffc;
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  font-weight: 400;
+  /* font-weight: 400; (기본값) */
+}
+/* 레이아웃(선택자 그루핑) */
+.header, .visual, .main, .slogan, .footer-inner {
+  width: 940px;
+  box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
+  margin: 0 auto; /* 이동한 게 아니다. 상자의 크기가, 투명한 margin이 커진 것이다. 0 0 0 auto를 통해 오른쪽 정렬 효과를 만들 수 있다(자식 요소가 필요한, 방향이 필요한 flex보다 단순하다.) */ 
 }
 
+/* 헤더 */
 .header {
   background: pink;
+  padding: 0 30px; /* shorthand 표기법*/
+  height: 15vh;
 }
-
+/* 비주얼 */
 .visual {
   background: orange;
+  height: 10vh;
 }
-
+/* 메인 */
 .main {
   background: lightgreen;
+  height: 50vh;
 }
-
+/* 슬로건 */
 .slogan {
   background: skyblue;
+  height: 10vh;
 }
-
+/* 푸터 */
 .footer {
   background: gray;
+}
+.footer-inner {
+  background: silver;
+  height: 15vh;
 }
