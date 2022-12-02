@@ -42,39 +42,15 @@ body {
 .main {
   background: lightgreen;
   height: 50vh;
-  /* overflow: hidden, 가상 요소 선택자는 trick임. 정석은 flow-root */
-  display: flow-root; /* 단점: 지원되는 브라우저가 적음 */
-  /* overflow: hidden; */ /* 독립적인 블록 요소가 됨. width, height를 넘어가는 자식이 있을 때의 처리 방법에 대한 속성이므로, 정신차리고 자식 요소의 크기에 대해 계산함. BFC에 대해 공부할 것 */
-  /* zoom: 1; */ /* overflow: hidden이 IE6에서 지원 안해서 IE6을 위한 수단. BFC */
-  padding: 0 15px;
-}
-/* 배경이미지, 가상 요소 선택자는 ctrl+a로 블록 잡아도 안 잡힘 */
-/* 
-main::before {
-  content: "첫 번째 자식 요소입니다.";
-}
- */
-/*
-.main::after{
-  content: "";
-  clear: both;
-  display: block;
-}
-*/
-/* 가로 배치법 종류: 1. position 2. float 3. display: inline-block 4. display: flex 5. display: grid 다섯 가지 방법 모두 써보고 효율적인 것을 경우에 맞게 선택할 수 있도록 할 것 */
-.group {
-  float: left;
-  margin: 0 15px;
+  display: flex;
+  /* display: flex만 해도 그럭저럭 배치되는 이유: 설정하는 순간 {flex-direction: row, align-items: stretch} 이 기본값으로 활성화되기 때문 */
+  /* flex-direction: row; */
 }
 
 .group1 {
   background-color: violet;
   width: 250px;
-   /* 기본값 static */
-  /*
-   position: relative;
-  offset: -100px;
-  */
+ 
 }
 .group2 {
   background-color: tomato;
