@@ -11,11 +11,22 @@
 </head>
 <body>
   <header class="header">
+    <!-- 로고 Start -->
     <h1 class="logo">
       <a href="./index-complete.html">
-        <img src="./assets/logo.png" alt="" />
+        <!-- CSS가 아닌 HTML attribute로 width, height로 알려주는 게 성능을 위해 필요함(미리 자리를 배치함) -->
+        <!-- alt="있는 영단어로 만들 것 naver(X) 네이버(O) KDB Bank(X) K.D.B Bank(O)" -->
+        <img src="./assets/logo.png" alt="web cafe" width="165" height="35" />
       </a>
     </h1>
+
+    <ul class="member">
+      <li><a href="/">홈</a></li>
+      <li><span class="devider" aria-hidden="true">:</span><a href="/">로그인</a></li>
+      <li><span class="devider" aria-hidden="true">:</span><a href="/">회원가입</a></li>
+      <li><span class="devider" aria-hidden="true">:</span><a href="/">사이트맵</a></li>
+      <li><span class="devider" aria-hidden="true">:</span><a href="/">english</a></li>
+    </ul>
   </header>
   <div class="visual">비주얼</div>
   <main class="main">
