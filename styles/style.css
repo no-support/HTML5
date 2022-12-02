@@ -9,8 +9,15 @@
   box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
 }
 
+/* 링크 스타일 */
+a {
+  columns: inherit;
+  text-decoration: none;
+}
+
 /* 본문 스타일 */
 body {
+  color: #212121;
   background: #ccc;
   /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
   /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
@@ -44,7 +51,25 @@ body {
 }
 /* 텍스트 링크 모음 */
 .member {
-  background-color: aqua;
+  /* background-color: aqua; */
+  text-align: right;
+  padding: 4px 0;
+  /* 공백 지우는 기법1: html에서 </li>가 아닌 </li 까지만 작성 후 닫는 태그(>)를 다음 줄로 옮김. 꼼수. */
+  /* 공백 지우는 기법2: 부모에 {font-size:0} 후 자식 요소에 다시 글꼴을 키움 {font-size: 16px} */
+  /* font-size: 0; */
+}
+.member li {
+  /* background-color: pink; */
+  display: inline-block;
+  /* font-size: 16px; */
+}
+.member a {
+  background-color: coral;
+  padding: 6px 10px;
+  display: inherit;
+}
+.divider {
+  margin-right: 4px;
 }
 /* 비주얼 */
 .visual {
