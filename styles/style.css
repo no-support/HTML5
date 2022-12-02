@@ -11,7 +11,7 @@
 
 /* 본문 스타일 */
 body {
-  background: #ffc;
+  background: #ccc;
   /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
   /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
@@ -27,11 +27,25 @@ body {
 
 /* 헤더 */
 .header {
-  background: pink;
+  background: #fff;
   padding: 0 30px; /* shorthand 표기법*/
   height: 15vh;
+  /* border-radius: 0 0 15px 15px / 0 0 50px 50px; */
+  border-radius: 0 0 15px 15px;
+  /* 끝없이 찾아나가는 .logo의 기준점을 바로 위 태그에서 잡아주기 위한 속성 설정. static(기본값)만 아니면 됨. normal flow를 유지하면서 살짝 띄워서 움직일 수 있게 됨. */
+  position: relative;
 }
 
+/* 로고 */
+.logo {
+  position: absolute;
+  top: 45px;
+  left: 60px;
+}
+/* 텍스트 링크 모음 */
+.member {
+  background-color: aqua;
+}
 /* 비주얼 */
 .visual {
   background: orange;
