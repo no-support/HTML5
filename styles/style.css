@@ -41,16 +41,21 @@ body {
 /* 메인 */
 .main {
   background: lightgreen;
-  height: 50vh;
+  min-height: 450px;
   display: flex;
   /* display: flex만 해도 그럭저럭 배치되는 이유: 설정하는 순간 {flex-direction: row, align-items: stretch} 이 기본값으로 활성화되기 때문 */
-  /* flex-direction: row; */
+  flex-direction: row;
+  flex-wrap: nowrap; /* 기본값 */
+  /* flex-flow: row nowrap; */
+  /* IE11 space-evenly 미지원. -> 아래처럼 space-between+padding 기법 또는 {padding: 0 15px;}+.group {margin: 15px;}으로 해결 가능*/
+  justify-content: space-between;
+  padding: 30px;
+  align-items: flex-start;
 }
 
 .group1 {
   background-color: violet;
   width: 250px;
- 
 }
 .group2 {
   background-color: tomato;
@@ -59,6 +64,8 @@ body {
 .group3 {
   background-color: gold;
   width: 190px;
+  /* 남은 영역 모두 확대 */
+  /* flex-grow: 1; */
 }
 
 /* 슬로건 */
