@@ -1,35 +1,73 @@
-/* CSS는 무조건 전역이라서 값이 오염되기 쉽고, 작성 순서가 중요함 */
-/* 일단 평균화하고 일괄 reset한다. normalize 후에 reset한다. */
-/* 크로미움으로 통일되고 있는 추세라서(파이어폭스 빼고 다 크로미움 웹킷 기반) normalize.css도 잘 안 쓰는 추세 */
 @import url(./normalize.css);
 @import url(./reset.css);
+@import url(./fontello.css);
 
 /* 기본 스타일 */
-*, *::before, *::after {
-  box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 /* 본문 스타일 */
 body {
   background: #ffc;
-  /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
-  /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
-  /* font-weight: 400; (기본값) */
+  font-family: "Pretendard Variable", Pretendard, -apple-system,
+    BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI",
+    "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
 }
 
-/* 레이아웃(선택자 그루핑) */
-/* 태그 선택자를 많이쓰면 나중에 태그들끼리 겹치므로 가급적이면 태그 선택자가 아니라 클래스 선택자 사용할 것 */
-.header, .visual, .main, .slogan, .footer-inner {
+/* 레이아웃 */
+.header,
+.visual,
+.main,
+.slogan,
+.footer-inner {
   width: 940px;
-  margin: 0 auto; /* 이동한 게 아니다. 상자의 크기가, 투명한 margin이 커진 것이다. 0 0 0 auto를 통해 오른쪽 정렬 효과를 만들 수 있다(자식 요소가 필요한, 방향이 필요한 flex보다 단순하다.) */ 
+  margin: 0 auto;
 }
 
 /* 헤더 */
 .header {
-  background: pink;
-  padding: 0 30px; /* shorthand 표기법*/
+  background: #fff;
+  padding: 0 30px;
   height: 15vh;
+  border-radius: 0 0 15px 15px;
+}
+
+.member {
+  background-color: pink;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+}
+/* 겹침 Cascading */
+/* 우선순위 규칙 */
+/* li (Type Selector) - 1점 */
+/* .first (Class Selector) - 10점 */
+/* #item (ID Selector) - 100점 */
+
+/* .member -> 10점, li -> 1점, ::before -> 1점  => 12점  */
+/* .member li::before {
+  content: ":";
+} */
+/* .member -> 10점, .first -> 10점, ::before -> 1점  => 21점  */
+/* .member .first::before {
+  content: "첫번째 자식요소를 생성합니다.";
+} */
+/* .member li:first-child::before {
+  content: "";
+} */
+
+/* .member li:nth-child(n + 2)::before {
+  content: ":";
+  background-color: skyblue;
+} */
+
+.member li::before {
+  content: "\e800";
+  font-family: fontello;
 }
 
 /* 비주얼 */
@@ -37,50 +75,46 @@ body {
   background: orange;
   height: 10vh;
 }
-
 /* 메인 */
 .main {
   background: lightgreen;
-  min-height: 450px;
-  display: flex;
-  /* display: flex만 해도 그럭저럭 배치되는 이유: 설정하는 순간 {flex-direction: row, align-items: stretch} 이 기본값으로 활성화되기 때문 */
-  flex-direction: row;
-  flex-wrap: nowrap; /* 기본값 */
-  /* flex-flow: row nowrap; */
-  /* IE11 space-evenly 미지원. -> 아래처럼 space-between+padding 기법 또는 {padding: 0 15px;}+.group {margin: 15px;}으로 해결 가능*/
-  justify-content: space-between;
-  padding: 30px;
-  align-items: flex-start;
+  border-top: 1px solid red;
+  /* min-height: 450px; */
+  position: absolute;
 }
 
+.group {
+  height: 100px;
+}
 .group1 {
   background-color: violet;
   width: 250px;
+  float: right;
 }
+
 .group2 {
-  background-color: tomato;
+  background-color: salmon;
   width: 380px;
+  float: right;
 }
 .group3 {
   background-color: gold;
   width: 190px;
-  /* 남은 영역 모두 확대 */
-  /* flex-grow: 1; */
+  float: right;
 }
 
 /* 슬로건 */
 .slogan {
   background: skyblue;
   height: 10vh;
+  clear: both;
 }
-
 /* 푸터 */
 .footer {
   background: gray;
   width: 940px;
   margin: 0 auto;
 }
-
 .footer-inner {
   background: silver;
   height: 15vh;
