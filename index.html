@@ -8,6 +8,8 @@
   <!-- 폰트 요청을 CSS 요청보다 먼저 할 것 -->
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.6/dist/web/static/pretendard.css" />
   <link rel="stylesheet" href="./styles/style.css" />
+  <!-- HTML5에 추가된 defer. defer 또는 async 추가해야 메뉴바 동작 -->
+  <script src="./js/main.js" defer></script>
 </head>
 <body>
   <header class="header">
@@ -132,7 +134,11 @@
       </ul>
     </nav>
   </header>
-  <div class="visual">비주얼</div>
+  <div class="visual">
+    <div class="visual-text">
+      Web Standards &amp; Accessibility
+    </div>
+  </div>
   <main class="main">
     <div class="group group1">그룹1</div>
     <div class="group group2">그룹2</div>
@@ -143,5 +149,6 @@
   <footer class="footer">
     <div class="footer-inner">푸터</div>
   </footer>
+  <!-- <script src="./js/main.js"></script> -->
 </body>
 </html>

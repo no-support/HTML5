@@ -102,7 +102,7 @@ body {
 
 /* 메인 메뉴 */
 .navigation {
-  padding-bottom: 80px;
+  padding-bottom: 40px;
 }
 
 .menu {
@@ -159,12 +159,12 @@ body {
 }
 
 .sub-menu {
-  background-color: pink;
   /* position: absolute 주면 BFC 생성되어 자식을 데리고 뜨면서 pink가 보임 */
   position: absolute;
   top: 47px;
   display: none;
   /* left: 0; */
+  padding: 4px 0;
 }
 
 .menu-html, .menu-css, .menu-standards {
@@ -183,7 +183,6 @@ body {
 .sub-menu li {
   display: inline-block;
   padding-left: 1em;
-  background-color: gold;
 }
 
 .sub-menu a::before {  
@@ -207,10 +206,58 @@ body {
   content: "\e801";
 }
 
+.sub-menu a {
+  display: inline-block;
+  padding: 6px 0;
+}
+
+.sub-menu a:hover,
+.sub-menu a:focus {
+  color: red;
+}
+
 /* 비주얼 */
+/* keyframes (이름 선언) */
+/* at sign rule: 선언할 때 사용. 맨 밑줄에 선언해도 됨 */
+@keyframes moveEffect {
+  0%{
+    font-size: 12px;
+    /* transform: scale() -> 원본보다 커질 때 해상도 이슈 있음 */
+    /* transform: scale(0.5); */
+    color: rgba(0,0,0,0);
+    /* padding: 0; */
+    /* top: 0;
+    left: 0; */
+    transform: translate(0, 0);
+  }
+  100%{
+    font-size: 24px;
+    /* transform: scale(1); */
+    color: rgba(0,0,0,1);
+    /* padding: 75px 0 0 400px; */
+    /* top: 75px;
+    left: 400px; */
+    transform: translate(400px, 75px);
+  }
+}
+
 .visual {
-  background: orange;
-  height: 10vh;
+  background: pink;
+  height: 120px;
+  position: relative;
+}
+
+.visual-text {
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  color: coral;
+  animation-name: moveEffect;
+  animation-duration: 2000ms;
+  /* 애니메이션이 멈출 때 끝날 때의 상황으로 멈춤 */
+  animation-fill-mode: forwards;
+  /* transform: scale() */
+  /* font-size: 24px; */
+  /* transform-origin: left top; */
+  display: inline-block;
 }
 
 /* 메인 */
