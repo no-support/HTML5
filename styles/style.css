@@ -1,12 +1,12 @@
 /* CSS는 무조건 전역이라서 값이 오염되기 쉽고, 작성 순서가 중요함 */
 /* 일단 평균화하고 일괄 reset한다. normalize 후에 reset한다. */
 /* 크로미움으로 통일되고 있는 추세라서(파이어폭스 빼고 다 크로미움 웹킷 기반) normalize.css도 잘 안 쓰는 추세 */
+@import url(./fontello.css);
 @import url(./normalize.css);
 @import url(./reset.css);
 
 /* 숨김 콘텐츠 */
 .a11y-hidden {
-  background-color: yellow;
   position: absolute;
   /* 스크롤 위로 올라오는 이슈 */
   /* top: -9999em; */
@@ -68,6 +68,8 @@ body {
   position: absolute;
   top: 45px;
   left: 60px;
+  /* .menu의 position: relative;로 인한 로고 가림 해결 */
+  z-index: 10;
 }
 /* 텍스트 링크 모음 */
 .member {
@@ -114,36 +116,97 @@ body {
       #e85e2c 70%,
       #ef9126 100%
     );
-    border-radius: 0 0 5px 5px;
-    /* display: flow-root; */
-    padding-left: 230px;
-    height: 47px;
-  }
-  
-  .menu-item {
-    /* background-color: aqua; */
-    float: left;
-    border-left: 2px solid #fff;
-  }
-  .menu-button {
-    border: 0;
-    /* border보다 아래에 작성 */
-    background: transparent;
-    /* 한 줄의 높이를 45px로 */
-    line-height: 45px;
-    padding: 0 23px;
-    font-size: 15px;
-    font-weight: 700;
-    /* 경계선도 클릭 가능 */
-    /* border-left: 2px solid #fff; */
-    color: #fff;
-    text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+  border-radius: 0 0 5px 5px;
+  /* display: flow-root; */
+  padding-left: 230px;
+  height: 47px;
+  position: relative;
 }
+
+.menu > li:nth-child(-n + 3) {
+  position: relative;
+}
+
+.menu-item {
+  float: left;
+  border-left: 2px solid #fff;
+}
+
+/* 구체성 -> 10점 */
+.menu-button {
+  border: 0;
+  /* border보다 아래에 작성 */
+  background: transparent;
+  padding: 0 23px;
+  /* 한 줄의 높이를 45px로 */
+  line-height: 45px;
+  font-size: 15px;
+  font-weight: 700;
+  /* 경계선도 클릭 가능 */
+  /* border-left: 2px solid #fff; */
+  color: #fff;
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
+}
+.is-active .menu-button {
+  color: #ff0;
+}
+
+.is-active .menu-button::after {
+  /* .menu-button에 line-height가 없을 시 HTML에 대해 바로 밑에 그려짐; */
+  content: "";
+  display: block;
+  border-top: 2px solid #000;
+}
+
 .sub-menu {
   background-color: pink;
+  /* position: absolute 주면 BFC 생성되어 자식을 데리고 뜨면서 pink가 보임 */
   position: absolute;
+  top: 47px;
   display: none;
+  /* left: 0; */
 }
+
+.menu-html, .menu-css, .menu-standards {
+  left: 0;
+}
+
+.menu-accessibility, .menu-qna, .menu-archive {
+  right: 0;
+}
+
+.is-active .sub-menu {
+  display: block;
+  white-space: nowrap;
+}
+
+.sub-menu li {
+  display: inline-block;
+  padding-left: 1em;
+  background-color: gold;
+}
+
+.sub-menu a::before {  
+  content: "\e805";
+  font-family: 'fontello';
+  font-weight: normal;
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1em;
+  margin-left: .2em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.sub-menu a:hover::before, .sub-menu a:focus::before {
+  content: "\e801";
+}
+
 /* 비주얼 */
 .visual {
   background: orange;
