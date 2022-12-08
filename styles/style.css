@@ -38,12 +38,20 @@ a {
 body {
   /* em(부모로부터 상속), rem(root 즉 html태그 기준) 단위를 사용해보기(반응형) */
   font-size: 1.4rem;
-  color: #212121;
-  background: #ccc linear-gradient(to bottom, #ccc 0%, #eee 35%, #fff 70%, #fff 100%);
   /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
   /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   /* font-weight: 400; (기본값) */
+  color: #212121;
+  background-color: #ccc;
+  /* 마지막 인자가 아래로 쌓임 */
+  /* background-image: url(./images/bg_flower.png), linear-gradient(to bottom, #ccc 0%, #eee 35%, #fff 70%, #fff 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: 50% 0, 0 0; */
+  /* 기본값 background-attachment: scroll; fixed: 컨텐츠가 떠있는 것처럼 보임 */
+  /* background-attachment: fixed; */
+  background: url(./images/bg_flower.png) no-repeat 50% 0,
+  #ccc linear-gradient(to bottom, #ccc 0%, #eee 35%, #fff 70%, #fff 100%) repeat 0 0;
 }
 
 /* 레이아웃(선택자 그루핑) */
@@ -55,7 +63,7 @@ body {
 
 /* 헤더 */
 .header {
-  background: #fff;
+  /* background: #fff; */
   padding: 0 30px; /* shorthand 표기법*/
   /* border-radius: 0 0 15px 15px / 0 0 50px 50px; */
   border-radius: 0 0 15px 15px;
@@ -224,7 +232,7 @@ body {
     font-size: 12px;
     /* transform: scale() -> 원본보다 커질 때 해상도 이슈 있음 */
     /* transform: scale(0.5); */
-    color: rgba(0,0,0,0);
+    color: hsla(0, 0%, 0%, 0);
     /* padding: 0; */
     /* top: 0;
     left: 0; */
@@ -232,8 +240,9 @@ body {
   }
   100%{
     font-size: 24px;
+    color: hsla(0, 0%, 0%, 1);
     /* transform: scale(1); */
-    color: rgba(0,0,0,1);
+    /* color: rgba(0,0,0,1); */
     /* padding: 75px 0 0 400px; */
     /* top: 75px;
     left: 400px; */
@@ -241,23 +250,61 @@ body {
   }
 }
 
+@keyframes fadeEffect {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 .visual {
-  background: pink;
+  /* background: orange; */
   height: 120px;
   position: relative;
 }
 
+.visual::before, .visual::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  /* animation-name: fadeEffect;
+  animation-duration: 2000ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate; */
+  animation: fadeEffect 2000ms infinite alternate;
+}
+
+.visual::before {
+  background: url(./images/ani_flower_01.png) no-repeat 0 -10px,
+  url(./images/ani_flower_02.png) no-repeat 600px 0;
+}
+
+.visual::after {
+  background: url(./images/ani_flower_03.png) no-repeat 300px 0,
+  url(./images/ani_flower_04.png) no-repeat 800px 0;
+  animation-delay: 1000ms;
+}
+
 .visual-text {
   font-family: Georgia, 'Times New Roman', Times, serif;
-  color: coral;
-  animation-name: moveEffect;
-  animation-duration: 2000ms;
+  /* animation-name: moveEffect; */
+  /* animation-duration: 400ms; */
+  /* animation-timing-function: ease-in-out; */
   /* 애니메이션이 멈출 때 끝날 때의 상황으로 멈춤 */
-  animation-fill-mode: forwards;
+  /* animation-fill-mode: forwards; */
+  animation: moveEffect 400ms ease-in-out forwards;
   /* transform: scale() */
   /* font-size: 24px; */
   /* transform-origin: left top; */
-  display: inline-block;
+  /* background-color: aqua; */
+  /* display: inline-block; */
+  position: relative;
+  z-index: 1;
 }
 
 /* 메인 */
