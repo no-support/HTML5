@@ -6,7 +6,7 @@
 @import url(./reset.css);
 
 /* 숨김 콘텐츠 */
-.a11y-hidden {
+.a11y-hidden, legend {
   position: absolute;
   /* 스크롤 위로 올라오는 이슈 */
   /* top: -9999em; */
@@ -14,6 +14,7 @@
   width: 1px;
   height: 1px;
   margin: -1px;
+  /* 다양한 브라우저에서도 적용되도록 한 번 더 같은 효과를 내는 속성(overflow: hidden;) 작성  */
   overflow: hidden;
   clip: rect(0 0 0 0);
   /* clip-path: polygon(0 0, 0 0, 0 0); */
@@ -24,6 +25,7 @@
 *, *::before, *::after {
   box-sizing: border-box; /* content-box(기본값): width + padding + border + margin을 계산해서 차지한다. border-box 선택 이유: 다양한 모바일 환경을 위해(100%일 때 padding이 포함된 값이므로 좌우 스크롤이 발생하지 않음) // box model 관련 학습할 것*/
 }
+
 html {
   font-size: 10px;
 }
@@ -36,14 +38,13 @@ a {
 
 /* 본문 스타일 */
 body {
+  color: #212121;
   /* em(부모로부터 상속), rem(root 즉 html태그 기준) 단위를 사용해보기(반응형) */
   font-size: 1.4rem;
   /* 모바일 환경 가독성을 위해 sans(부정 접두사)-serif(날카롭다.삐침)체를 사용하는 추세 */
   /* 대부분의 환경에서 깨지지 않고 예쁘게 보여서 요즘 핫한 폰트인 프리텐다드 */
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
   /* font-weight: 400; (기본값) */
-  color: #212121;
-  background-color: #ccc;
   /* 마지막 인자가 아래로 쌓임 */
   /* background-image: url(./images/bg_flower.png), linear-gradient(to bottom, #ccc 0%, #eee 35%, #fff 70%, #fff 100%);
   background-repeat: no-repeat, repeat;
@@ -63,11 +64,11 @@ body {
 
 /* 헤더 */
 .header {
-  /* background: #fff; */
+  background: #fff;
   padding: 0 30px; /* shorthand 표기법*/
   /* border-radius: 0 0 15px 15px / 0 0 50px 50px; */
   border-radius: 0 0 15px 15px;
-  /* 끝없이 찾아나가는 .logo의 기준점을 바로 위 태그에서 잡아주기 위한 속성 설정. static(기본값)만 아니면 됨. normal flow를 유지하면서 살짝 띄워서 움직일 수 있게 됨. */
+  /* 끝 없이 찾아나가는 .logo의 기준점을 바로 위 태그에서 잡아주기 위한 속성 설정. static(기본값)만 아니면 됨. normal flow를 유지하면서 살짝 띄워서 움직일 수 있게 됨. */
   position: relative;
 }
 
@@ -101,9 +102,12 @@ body {
   display: inherit;
   text-transform: uppercase;
 }
-.member li:last-child a {
+
+/* 마지막 li 요소에 포함된 a 요소를 선택하여 오른쪽 padding 값을 0으로 재정의 하는 방법 */
+/* .member li:last-child a {
   padding-right: 0;
-}
+} */
+
 .divider {
   margin-right: 4px;
 }
@@ -154,9 +158,6 @@ body {
   /* border-left: 2px solid #fff; */
   color: #fff;
   text-shadow: 1px 1px 0 #000, -1px -1px 0 #000;
-}
-.is-active .menu-button {
-  color: #ff0;
 }
 
 .is-active .menu-button::after {
@@ -221,7 +222,7 @@ body {
 
 .sub-menu a:hover,
 .sub-menu a:focus {
-  color: red;
+  color: #f00;
 }
 
 /* 비주얼 */
@@ -309,13 +310,14 @@ body {
 
 /* 메인 */
 .main {
-  background: lightgreen;
-  height: 50vh;
+  background: #fff;
+  min-height: 450px;
   /* overflow: hidden, 가상 요소 선택자는 trick임. 정석은 flow-root */
   display: flow-root; /* 단점: 지원되는 브라우저가 적음 */
   /* overflow: hidden; */ /* 독립적인 블록 요소가 됨. width, height를 넘어가는 자식이 있을 때의 처리 방법에 대한 속성이므로, 정신차리고 자식 요소의 크기에 대해 계산함. BFC에 대해 공부할 것 */
   /* zoom: 1; */ /* overflow: hidden이 IE6에서 지원 안해서 IE6을 위한 수단. BFC */
-  padding: 0 15px;
+  padding: 30px 15px;
+  border-radius: 15px 15px 0 0;
 }
 /* 배경이미지, 가상 요소 선택자는 ctrl+a로 블록 잡아도 안 잡힘 */
 /* 
@@ -332,12 +334,11 @@ main::before {
 */
 /* 가로 배치법 종류: 1. position 2. float 3. display: inline-block 4. display: flex 5. display: grid 다섯 가지 방법 모두 써보고 효율적인 것을 경우에 맞게 선택할 수 있도록 할 것 */
 .group {
-  float: left;
   margin: 0 15px;
+  float: left;
 }
 
 .group1 {
-  background-color: violet;
   width: 250px;
    /* 기본값 static */
   /*
@@ -346,12 +347,154 @@ main::before {
   */
 }
 .group2 {
-  background-color: tomato;
+  background-color: salmon;
   width: 380px;
 }
 .group3 {
   background-color: gold;
   width: 190px;
+}
+
+/* 로그인 영역 */
+.login {
+  box-shadow: 5px 5px 0 0 #ccc;
+  background: orangered radial-gradient(circle at right top, orange, orangered);
+  padding: 10px;
+  border-radius: 5px;
+}
+.login-title {
+  color: #ff0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-indent: 10px;
+}
+
+.login-form {
+  background-color: #fff;
+  margin-top: 10px;
+  border-radius: 5px 5px 0 0;
+  padding: 10px 10px 0 10px;
+}
+
+.login-form fieldset {
+  /* .login-button: absolute의 기준점 */
+  position: relative;
+  border-bottom: 1px solid #aaa;
+  padding-bottom: 5px;
+}
+.user-email, .user-pw {
+  margin-bottom: 5px;
+}
+
+.login-form label {
+  display: inline-block;
+  width: 4em;
+}
+
+.login-form input {
+  width: 90px;
+  height: 24px;
+  border: 1px solid #aaa;
+  padding: 1px 1px 1px 5px;
+  border-radius: 3px;
+}
+
+.login-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 53px;
+  background-color: orangered;
+  color: #fff;
+  border: 0;
+  padding: 0 8px;
+  border-radius: 5px;
+  font-size: 13px;
+}
+
+.sign {
+  background-color: #fff;
+  border-radius: 0 0 5px 5px;
+  padding: 4px 10px;
+  /* 가로 배치: d: flex / float: left / d:inline-block 세 가지 버전  */
+  display: flex;
+  /* row 방향, 줄 바꿈 불허. 안 써도 되지만 명확하게 이해하기 위해 */
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+/* float 방식. .sign {overflow: hidden;}도 가능 */
+/* .sign {
+  display: flow-root;
+}
+
+.sign li:first-child {
+  float: left;
+}
+
+.sign li:last-child {
+  float: right;
+} */
+
+/* inline-block 방식. 공백 문자 해결을 위해 li 요소 상위에 font-size: 0; 주고 글자 들어가는 부분부터 다시 폰트 사이즈 복원 */
+/* .sign {
+  font-size: 0;
+}
+
+.sign li {
+  display: inline-block;
+  font-size: 14px;
+}
+
+.sign li:first-child {
+  width: 35%;
+}
+
+.sign li:last-child {
+  width: 65%;
+  text-align: right;
+} */
+
+.sign a {
+  /* padding을 주기 위해 display: block; */
+  display: block;
+  padding: 6px 0;
+  letter-spacing: -1px;
+}
+
+.sign a:before {
+  content: "\e804";
+  font-family: 'fontello';
+  margin-right: 8px;
+  color: orangered;
+}
+
+/* 유효성 검사 배너 */
+.validation-list {
+  margin-top: 25px;
+}
+
+.validation-list li {
+  margin-top: 10px;
+}
+
+.validation-list a {
+  display: block;
+  background: url(./images/validation_icon.png) no-repeat 20px 50%, #ccc linear-gradient(to bottom, #ccc 0%, #eee 100%);
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 10px 10px 10px 40px;
+}
+
+/* before를 이용한 방법. vertical-align은 인라인 요소 속성
+.validation-list a::before {
+  content: url("./images/validation_icon.png");
+  background-color: skyblue;
+  vertical-align: middle;
+} */
+
+.validation-list a:hover, .validation-list a:focus {
+  color: #f00;
 }
 
 /* 슬로건 */
