@@ -553,6 +553,62 @@ main::before {
   float: right;
 }
 
+
+/* 검색 폼 */
+.search-form {
+  background: #ccc linear-gradient(to bottom, #ccc, #eee);
+  border: 1px solid #aaa;
+  border-radius: 15px 15px 0 0;
+  /* 위 15px 좌우 25px 아래 10px */
+  padding: 15px 25px 10px;
+}
+
+.search-form-inner {
+  /* background-color: yellow; */
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
+
+.form-group {
+  /* background-color: pink; */
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.form-group-label {
+  /* white-space: nowrap; 또는 flex-shirink: 0;으로 축소되지 않게 */
+  flex-shrink: 0;
+  margin-right: 10px;
+  /* background-color: lime; */
+}
+
+.form-group-input {
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  height: 24px;
+  padding: 1px 1px 1px 5px;
+  flex-grow: 1;
+  /* 파이어폭스 해결용. 파이어폭스는 input의 min-width값이 있다. */
+  min-width: 0;
+  width: 100%;
+}
+
+.search-button {
+  /* white-space: nowrap; */
+  flex-shrink: 0;
+  background-color: #000;
+  border-radius: 3px;
+  color: #fff;
+  border: 0;
+  height: 24px;
+  padding: 0 10px;
+  font-size: 1.2rem;
+}
+
 /* 슬로건 */
 .slogan {
   background: skyblue;
