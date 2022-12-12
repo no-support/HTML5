@@ -162,15 +162,52 @@
           <li><a href="./">아이디/비밀번호 찾기</a></li>
         </ul>
       </section>
-      <!-- 암묵적 아웃라인 생성 -->
+      <!-- 암묵적 아웃라인 생성. 굳이 h2와 ul을 다시 감쌀 필요 없다. -->
       <h2 class="a11y-hidden">유효성 검사 배너</h2>
       <ul class="validation-list">
         <!-- rel="noopener noreferrer 기재 이유: https://velog.io/@0seo8/HTML-targetblank-취약점-보완 -->
         <li><a href="./" target="_blank" rel="noopener noreferrer" title="마크업 유효성 검사 사이트로 이동(새 창)">WC3 Markup Validation</a></li>
         <li><a href="./" target="_blank" rel="noopener noreferrer" title="CSS 유효성 검사 사이트로 이동(새 창)">CSS Validation Service</a></li>
       </ul>
+      <section class="term">
+        <h2 class="term-title">웹 관련 용어</h2>
+        <dl class="term-list">
+          <div>
+            <dt class="term-list-subject">웹 표준이란?</dt>
+            <dd class="term-list-thumbnail">
+              <img src="./assets/web_standards.gif" alt="W3C 로고" />
+            </dd>
+            <dd class="term-list-brief">
+              W3C 단체에서 규정한 웹 기술 다양에 대한 규칙을 말하며 표준 규격은...
+            </dd>
+          </div>
+          <div class="cross">
+            <dt class="term-list-subject">웹 표준이란?</dt>
+            <dd class="term-list-thumbnail">
+              <img src="./assets/web_standards.gif" alt="W3C 로고" />
+            </dd>
+            <dd class="term-list-brief">
+              W3C 단체에서 규정한 웹 기술 다양에 대한 규칙을 말하며 표준 규격은...
+            </dd>
+          </div>
+        </dl>
+      </section>
     </div>
-    <div class="group group2">그룹2</div>
+    <div class="group group2">
+      <h2 class="a11y-hidden">검색</h2>
+      <form method="POST" action="https://formspree.io/seulbinim@gmail.com" class="search-form">
+        <fieldset>
+          <legend>검색 폼</legend>
+          <div class="search-form-inner">
+            <div class="form-group">
+              <label for="search" class="form-group-label"><span class="icon-search" aria-hidden="true"></span>자료검색</label>
+              <input type="search" id="search" class="form-group-input" required placeholder="검색어를 입력하세요. 예)HTML5" />
+            </div>
+            <button type="submit" class="search-button button-fill button">검색</button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
     <div class="group group3">그룹3</div>
     <!-- <div class="clearfix"></div> -->
   </main>
