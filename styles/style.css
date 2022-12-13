@@ -4,13 +4,14 @@
 @import url(./fontello.css);
 @import url(./normalize.css);
 @import url(./reset.css);
+@import url(./module.css);
 
 /* 숨김 콘텐츠 */
 .a11y-hidden, legend {
   position: absolute;
   /* 스크롤 위로 올라오는 이슈 */
   /* top: -9999em; */
-  /* width: 0; height: 0; color: transparent; => 스크린 리더에서 못 읽음 opacity: 0; => 모바일에서 못 읽음 */
+  /* width: 0; height: 0; font-size:0; color: transparent; => 스크린 리더에서 못 읽음 opacity: 0; => 모바일에서 못 읽음 */
   width: 1px;
   height: 1px;
   margin: -1px;
@@ -682,7 +683,7 @@ main::before {
 }
 
 .news-title {
-  color: #e85e2c;
+  /* color: #e85e2c; */
   font-size: 1.5rem;
   font-weight: 700;
 }
@@ -742,12 +743,99 @@ main::before {
   padding: 8px;
 }
 
+/* 신규 이벤트 및 관련 사이트 */
+.event {
+  border-bottom: 1px solid #aaa;
+}
 
+.event-title {
+  display: inline-block;
+}
 
+.event-button-wrapper {
+  /* 폼 요소라서 크롬, 사파리, 오페라 다르게 보임 */
+  height: 20px;
+  overflow: hidden;
+  /* descenders 영역 제거 */
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 5px;
+  float: right;
+}
 
+/* IR(image replacement) 기법. 텍스트가 안 보이고 대신 배경 이미가 보이게 하는 패턴 */
+/* button은 인라인 블록 */
+.event-button {
+  width: 19px;
+  height: 100%;
+  border: 0;
+  /* 글자 안 보이게 하는 세 가지 트릭 (padding, position, text-indent) 중 padding 트릭 */
+  padding: 18px 0 0 0;
+  background: url(./images/back_forward.png) no-repeat 0 0; 
+}
 
+.event-button-next {
+  background: url(./images/back_forward.png) no-repeat -36px 0;
+}
 
+.event-thumbnail, .event-brief {
+  margin: 10px 0;
+}
 
+.event-thumbnail img {
+  border: 1px solid #aaa;
+  box-shadow: 5px 5px 0 0 #ccc;
+}
+
+.event-brief {
+  line-height: 1.5;
+}
+
+.related {
+  margin-top: 10px;
+}
+
+.related-list {
+  background-color: #fff;
+  border: 1px solid #aaa;
+  border-radius: 5px;
+  margin-top: 10px;
+  height: 27px;
+  overflow: hidden;
+  /* border-radius: 35px 0 35px 0; */
+  /* 자연스럽게 바뀔 속성 지정 */
+  /* transition-property: background-color, border-radius;
+  transition-duration: 2000ms, 2000ms; */
+  /* 시퀀스 애니메이션 */
+  /* transition-delay: 0ms, 2000ms;
+  transition-timing-function: ease-in-out; */
+  /* transition: background-color 2000ms 0ms ease-in-out, border-radius 2000ms 2000ms ease-in-out; */
+  transition: height 400ms 0ms, padding 400ms 400ms;
+  /* padding: 0; */
+}
+
+.related-list li {
+  height: 25px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.related-list a {
+  flex-grow: 1;
+  padding: 0 10px;
+}
+
+.related-list:hover, .related-list:focus {
+  /* background-color: #ff0;
+  border-radius: 0 35px 0 35px; */
+  /* height: auto;로는 애니메이션이 적용되지 않는다. */
+  height: 147px;
+  border: 1px solid #aaa;
+  padding: 10px 0;
+}
 
 /* 슬로건 */
 .slogan {
