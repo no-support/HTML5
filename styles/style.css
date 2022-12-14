@@ -841,8 +841,6 @@ main::before {
   padding: 10px 0;
 }
 
-
-
 /* 인기 사이트 */
 .favorite {
   position: relative;
@@ -859,7 +857,10 @@ main::before {
 .favorite-list li {
   margin-top: 10px;
   counter-increment: number;
-  position: relative;
+  background-color: pink;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
 }
 
 .favorite-list li::before {
@@ -876,40 +877,26 @@ main::before {
   line-height: 1.5;
 }
 
+.favorite-list a {
+  background-color: aqua;
+  /* flex-grow: 1; */
+}
+
 .up, .stop, .down {
   display: inline-block;
   width: 20px;
   height: 11px;
-  background-color: pink;
-  position: absolute;
-  right: 0;
-}
-
-.up {
-  width: 9px;
-  height: 11px;
-  background: url(./images/rank.png) no-repeat 0 0;
+  margin-left: auto;
+  background: lime url("./images/rank.png") no-repeat 100% 0;
 }
 
 .stop {
-  width: 9px;
-  height: 11px;
-  background: url(./images/rank.png) no-repeat 0 -22px;
+  background-position: 100% 50%;
 }
 
 .down {
-  width: 9px;
-  height: 11px;
-  background: url(./images/rank.png) no-repeat 0 -44px;
+  background-position: 100% 100%;
 }
-
-/*  flex쓰지 말 것
-h: 55px
-  h 11 (중간 오른쪽 끝에)
-  w 9
-*/
-
-
 
 .favorite-more {
   position: absolute;
@@ -917,13 +904,6 @@ h: 55px
   right: -8px;
   padding: 8px;
 }
-
-
-
-
-
-
-
 
 /* 슬로건 */
 .slogan {
