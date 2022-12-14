@@ -858,9 +858,7 @@ main::before {
   margin-top: 10px;
   counter-increment: number;
   background-color: pink;
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
+  position: relative;
 }
 
 .favorite-list li::before {
@@ -877,13 +875,12 @@ main::before {
   line-height: 1.5;
 }
 
-.favorite-list a {
-  background-color: aqua;
-  /* flex-grow: 1; */
-}
-
 .up, .stop, .down {
-  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -6px;
+  /* display: inline-block; */
   width: 20px;
   height: 11px;
   margin-left: auto;
