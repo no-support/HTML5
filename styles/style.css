@@ -847,7 +847,6 @@ main::before {
 }
 
 .favorite-list {
-  background-color: yellow;
   /* 스크린 리더가 못 읽음 */
   list-style-type: none;
   /* 스크린 리더가 읽음 */
@@ -857,7 +856,6 @@ main::before {
 .favorite-list li {
   margin-top: 10px;
   counter-increment: number;
-  background-color: pink;
   position: relative;
 }
 
@@ -879,12 +877,13 @@ main::before {
   position: absolute;
   top: 50%;
   right: 0;
+  /* margin-top: -[자기자신의 절반 크기] */
   margin-top: -6px;
   /* display: inline-block; */
   width: 20px;
   height: 11px;
   margin-left: auto;
-  background: lime url("./images/rank.png") no-repeat 100% 0;
+  background: url("./images/rank.png") no-repeat 100% 0;
 }
 
 .stop {
@@ -904,8 +903,44 @@ main::before {
 
 /* 슬로건 */
 .slogan {
-  background: skyblue;
-  height: 10vh;
+  /* display: flow-root;를 지원하지 않는 브라우저를 위한 안전장치 */
+  clear: both;
+  position: relative;
+  padding: 15px 100px 15px 180px;
+}
+
+.slogan-title {
+  width: 110px;
+  height: 83px;
+  line-height: 83px;
+  text-align: center;
+  position: absolute;
+  bottom: -25px;
+  left: 35px;
+}
+
+.slogan-title::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url(./images/coffee.png) no-repeat;
+}
+
+.slogan-content {
+  color: #a09784;
+}
+
+.slogan-content q::before {
+  display: inline-block;
+  font-size: 3rem;
+  transform: translateY(10px);
+}
+
+.slogan-content q::after {
+  content: "";
 }
 
 /* 푸터 */
