@@ -155,6 +155,7 @@
     <div class="group group1">
       <section class="login">
         <h2 class="login-title">로그인</h2>
+        <!-- form 요소에서 flex 주면 버그 있음 -->
         <form action="https://formspree.io/seulbinim@gmail.com" class="login-form" method="POST">
           <fieldset>
             <legend>회원 로그인 폼</legend>
@@ -183,9 +184,11 @@
       <section class="term">
         <h2 class="term-title">웹 관련 용어</h2>
         <dl class="term-list">
+          <!-- dl의 자식 요소로 dt, dd 외에 div도 허용한다(단, dt, dd를 묶을 때만 가능) -->
           <div>
             <dt class="term-list-subject">웹 표준이란?</dt>
             <dd class="term-list-thumbnail">
+              <!-- html태그 속성으로 크기를 조정할 수 있는 것은 인라인 혹은 인라인 블록임 -->
               <img src="./assets/web_standards.gif" alt="W3C 로고" />
             </dd>
             <dd class="term-list-brief">
@@ -207,6 +210,7 @@
     <div class="group group2">
       <h2 class="a11y-hidden">검색</h2>
       <form method="POST" action="https://formspree.io/seulbinim@gmail.com" class="search-form">
+        <!-- 필드셋에 css적용 비추 -->
         <fieldset>
           <legend>검색 폼</legend>
           <div class="search-form-inner">
@@ -309,6 +313,7 @@
             <button type="button" class="event-button event-button-prev">이전 이벤트 보기</button>
             <button type="button" class="event-button event-button-next">다음 이벤트 보기</button>
           </div>
+          <!-- DOM 제어를 위해 id 속성 추가 -->
           <div id="eventDetail">
             <p class="event-thumbnail">
               <img src="./assets/free_gift.gif" alt="이벤트 경품 : 웹표준 핵심 가이드북 2(HTML5+CSS3) 증정" />

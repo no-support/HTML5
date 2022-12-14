@@ -95,6 +95,7 @@ body {
   transform: translate(10px);
 }
 .member li {
+  /* display: inline-block; -> 모양은 inline 속성은 block처럼 줄 수 있음 */
   display: inline-block;
   /* font-size: 16px; */
 }
@@ -315,7 +316,8 @@ body {
   min-height: 450px;
   /* overflow: hidden, 가상 요소 선택자는 trick임. 정석은 flow-root */
   display: flow-root; /* 단점: 지원되는 브라우저가 적음 */
-  /* overflow: hidden; */ /* 독립적인 블록 요소가 됨. width, height를 넘어가는 자식이 있을 때의 처리 방법에 대한 속성이므로, 정신차리고 자식 요소의 크기에 대해 계산함. BFC에 대해 공부할 것 */
+  /* overflow: hidden; */ /* 독립적인 블록 요소가 됨. width, height를 넘어가는 자식이 있을 때의 처리 방법에 대한 속성이므로, 정신차리고 자식 요소의 크기에 대해 계산함. BFC와 IFC에 대해 공부할 것 */
+  /* position: absolute 또는 float 을 주면 block 요소가 된다. display: inline-block으로 줘도 여전히 block 요소이다. */
   /* zoom: 1; */ /* overflow: hidden이 IE6에서 지원 안해서 IE6을 위한 수단. BFC */
   padding: 30px 15px;
   border-radius: 15px 15px 0 0;
@@ -416,6 +418,7 @@ main::before {
   border-radius: 0 0 5px 5px;
   padding: 4px 10px;
   /* 가로 배치: d: flex / float: left / d:inline-block 세 가지 버전  */
+  /* 부모가 flex면 자식은 inline, block이 아니라 flex-item이 됨 */
   display: flex;
   /* row 방향, 줄 바꿈 불허. 안 써도 되지만 명확하게 이해하기 위해 */
   flex-flow: row nowrap;
@@ -753,7 +756,7 @@ main::before {
 }
 
 .event-button-wrapper {
-  /* 폼 요소라서 크롬, 사파리, 오페라 다르게 보임 */
+  /* 폼 요소라서 크롬, 사파리, 오페라 다르게 보임. 크롬/사파리/오페라 세 브라우저에서 점검하며 만들 것 */
   height: 20px;
   overflow: hidden;
   /* descenders 영역 제거 */
@@ -772,6 +775,7 @@ main::before {
   border: 0;
   /* 글자 안 보이게 하는 세 가지 트릭 (padding, position, text-indent) 중 padding 트릭 */
   padding: 18px 0 0 0;
+  /* 성능 향상을 위한 sprite 이미지 */
   background: url(./images/back_forward.png) no-repeat 0 0; 
 }
 

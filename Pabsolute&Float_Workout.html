@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    /* absolute-section */
+    .absolute-section .container {
+     width: 400px;
+     height: 400px;
+     background-color: beige;
+     position: relative;
+   }
+  
+   .absolute-section .before-img {
+     background-color: lightblue;
+     display: inline;
+     width: 100px;
+     height: 100px;
+   }
+   
+   .absolute-section img {
+     background-color: rgba(255, 192, 203, 0.5);
+     position: absolute;
+     top: 0;
+     left: 0;
+     /* display: inline-block;을 줘도 크롬 계산됨 탭에서 보면 block으로 계산됨 */
+     display: inline-block;
+   }
+   
+   .absolute-section .after-img {
+     background-color: lightgreen;
+     display: inline;
+     width: 100px;
+     height: 100px;
+   }
+
+
+
+    /* float-section */
+    .float-section .container {
+      width: 400px;
+      height: 400px;
+      background-color: beige;
+    }
+    
+    /* inline-block이나 inline일 때, html 구조상 먼저 왔음에도 이미지 오른쪽으로 밀려남 */
+    .float-section .before-img {
+      background-color: lightblue;
+      display: inline-block;
+      width: 100px;
+      height: 100px;
+    }
+    
+    .float-section img {
+      background-color:  rgba(255, 192, 203, 0.5);
+      float: left;
+    }
+
+    /* display: block; -> 배경색은 가려지고 글자만 아래로 내려감
+    display: inline-block; -> 이미지 오른쪽에 위치
+    display: inline; -> 이미지 오른쪽에 위치하다가 글자가 많으면 아래로 내려감 */
+    .float-section .after-img {
+      background-color: lightgreen;
+      display: inline;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+  <section class="absolute-section">
+    <div class="container">
+      <!-- 주변 태그가 img를 없는 존재처럼 취급 -->
+      <div class="before-img">beforeImg234567890beforeImg1234567890beforeImg1234567890</div>
+      <img src="./styles/images/ani_flower_01.png" alt="" />
+      <div class="after-img">afterImg1234567890afterImg1234567890afterImg1234567890</div>
+    </div>
+  </section>
+  
+  <hr />
+    
+  <section class="float-section">
+    <div class="container">
+      <!-- <div class="before-img">beforeImg234567890beforeImg1234567890beforeImg1234567890</div> -->
+      <img src="./styles/images/ani_flower_01.png" alt="" />
+      <div class="after-img">afterImg1234567890afterImg1234567890afterImg1234567890</div>
+    </div>
+  </section>
+</body>
+</html>
