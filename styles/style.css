@@ -841,6 +841,90 @@ main::before {
   padding: 10px 0;
 }
 
+
+
+/* 인기 사이트 */
+.favorite {
+  position: relative;
+}
+
+.favorite-list {
+  background-color: yellow;
+  /* 스크린 리더가 못 읽음 */
+  list-style-type: none;
+  /* 스크린 리더가 읽음 */
+  /* overflow: hidden; */
+}
+
+.favorite-list li {
+  margin-top: 10px;
+  counter-increment: number;
+  position: relative;
+}
+
+.favorite-list li::before {
+  content: counter(number);
+  background-color: #aaa;
+  color: #fff;
+  padding: 1px 6px;
+  font-size: 1.2rem;
+  margin-right: 5px;
+  border-radius: 3px;
+  display: inline-block;
+  width: 1.5em;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.up, .stop, .down {
+  display: inline-block;
+  width: 20px;
+  height: 11px;
+  background-color: pink;
+  position: absolute;
+  right: 0;
+}
+
+.up {
+  width: 9px;
+  height: 11px;
+  background: url(./images/rank.png) no-repeat 0 0;
+}
+
+.stop {
+  width: 9px;
+  height: 11px;
+  background: url(./images/rank.png) no-repeat 0 -22px;
+}
+
+.down {
+  width: 9px;
+  height: 11px;
+  background: url(./images/rank.png) no-repeat 0 -44px;
+}
+
+/*  flex쓰지 말 것
+h: 55px
+  h 11 (중간 오른쪽 끝에)
+  w 9
+*/
+
+
+
+.favorite-more {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  padding: 8px;
+}
+
+
+
+
+
+
+
+
 /* 슬로건 */
 .slogan {
   background: skyblue;
